@@ -1,4 +1,5 @@
 import Banner from "./components/Banner";
+import Card from "./components/Card";
 import Search from "./components/Search";
 
 export interface Capsule {
@@ -36,10 +37,12 @@ interface HomeProps {
 
 export default function Home({ capsules }: HomeProps) {
   return (
-    <div className="h-full flex justify-center items-center flex-col">
+    <div className="container mx-auto flex justify-center items-center flex-col">
       <Banner />
       <Search />
-      {capsules.map(capsule => <div key={capsule.capsule_serial}>{capsule.capsule_id}</div>)}
+      <div className="flex flex-wrap gap-10">
+        {capsules.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
+      </div>
     </div>
   )
 }
