@@ -3,7 +3,5 @@
 @tailwind utilities;
 
 body, html, #__next {
-  overflow: scroll;
-  margin: 0 auto;
   height: 100%;
 }
