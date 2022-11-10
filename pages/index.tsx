@@ -1,5 +1,7 @@
+import { useMemo, useState } from "react";
 import Banner from "./components/Banner";
 import Card from "./components/Card";
+import Paginate from "./components/Paginate";
 import Search from "./components/Search";
 
 export interface Capsule {
@@ -35,14 +37,30 @@ interface HomeProps {
   capsules: Capsules
 }
 
+const itemsOnEachPage = 6;
+
 export default function Home({ capsules }: HomeProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * itemsOnEachPage;
+    const lastPageIndex = firstPageIndex + itemsOnEachPage;
+    return capsules.slice(firstPageIndex, lastPageIndex)
+  }, [currentPage])
+
   return (
     <div className="container mx-auto flex justify-center items-center flex-col">
       <Banner />
       <Search />
       <div className="flex flex-wrap gap-10">
-        {capsules.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
+        {currentData.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
       </div>
+      <Paginate
+        itemsOnEachPage={itemsOnEachPage}
+        totalCount={capsules.length}
+        currentPage={currentPage} 
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   )
 }
