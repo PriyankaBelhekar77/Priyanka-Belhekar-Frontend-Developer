@@ -1,6 +1,8 @@
 const Banner = () => {
   return (
-    <div>SpaceX Capsules</div>
+    <div className="w-full h-20">
+      SpaceX Capsules
+    </div>
   )
 }
 
