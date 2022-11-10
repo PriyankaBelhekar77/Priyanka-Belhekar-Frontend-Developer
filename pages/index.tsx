@@ -59,7 +59,7 @@ export default function Home({ capsules }: HomeProps) {
         itemsOnEachPage={itemsOnEachPage}
         totalCount={capsules.length}
         currentPage={currentPage} 
-        onPageChange={page => setCurrentPage(page)}
+        onPageChange={(page: number) => setCurrentPage(page)}
       />
     </div>
   )

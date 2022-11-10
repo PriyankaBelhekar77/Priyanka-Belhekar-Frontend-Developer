@@ -46,7 +46,7 @@ const Paginate = ({ totalCount, itemsOnEachPage, currentPage, onPageChange }: Pa
         >
           Previous
         </li>
-        {paginateRange.map(page => <Page pageNumber={page} active={page === currentPage} onClick={onPageChange} />)}
+        {paginateRange.map(page => <Page key={page} pageNumber={page} active={page === currentPage} onClick={onPageChange} />)}
         <li 
           className="py-2 px-3 cursor-pointer leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
           onClick={onNext}
