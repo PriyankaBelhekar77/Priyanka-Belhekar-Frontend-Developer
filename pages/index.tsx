@@ -40,18 +40,19 @@ interface HomeProps {
 const itemsOnEachPage = 6;
 
 export default function Home({ capsules }: HomeProps) {
+  const [capsulesState, setCapsulesState] = useState(capsules);
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * itemsOnEachPage;
     const lastPageIndex = firstPageIndex + itemsOnEachPage;
-    return capsules.slice(firstPageIndex, lastPageIndex)
-  }, [currentPage])
+    return capsulesState.slice(firstPageIndex, lastPageIndex)
+  }, [currentPage, capsulesState])
 
   return (
     <div className="container mx-auto flex justify-center items-center flex-col">
       <Banner />
-      <Search />
+      <Search capsules={capsules} setState={setCapsulesState} />
       <div className="flex flex-wrap gap-10">
         {currentData.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
       </div>
