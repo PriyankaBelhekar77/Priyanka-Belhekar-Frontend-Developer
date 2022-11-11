@@ -41,17 +41,15 @@ const Paginate = ({ totalCount, itemsOnEachPage, currentPage, onPageChange }: Pa
     <nav aria-label="Page navigation example">
       <ul className="inline-flex -space-x-px">
         <li 
-          className="py-2 px-3 ml-0 cursor-pointer leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
           onClick={onPrevious}
         >
-          Previous
+          <button className="py-2 px-3 ml-0 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" disabled={currentPage === 1}>Previous</button>
         </li>
         {paginateRange.map(page => <Page key={page} pageNumber={page} active={page === currentPage} onClick={onPageChange} />)}
         <li 
-          className="py-2 px-3 cursor-pointer leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
           onClick={onNext}
         >
-          Next
+          <button className="py-2 px-3 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" disabled={currentPage === lastPage}>Next</button>
         </li>
       </ul>
     </nav>

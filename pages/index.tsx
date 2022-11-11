@@ -56,7 +56,7 @@ export default function Home({ capsules }: HomeProps) {
       <Cards currentData={currentData} />
       <Paginate
         itemsOnEachPage={itemsOnEachPage}
-        totalCount={capsules.length}
+        totalCount={capsulesState.length}
         currentPage={currentPage} 
         onPageChange={(page: number) => setCurrentPage(page)}
       />
