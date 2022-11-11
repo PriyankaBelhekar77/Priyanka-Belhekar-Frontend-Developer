@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Capsules } from "../..";
 
-const useDropdown = ({ capsules }: { capsules:Capsules }) => {
+const useDropdown = ({ capsules = [] }: { capsules:Capsules }) => {
   const types = useMemo(() => {
     const uniqueTypes = new Set();
     capsules.forEach(capsule => uniqueTypes.add(capsule.type));
@@ -23,7 +23,7 @@ const useDropdown = ({ capsules }: { capsules:Capsules }) => {
     return Array.from(uniqueTypes);
   }, [capsules]) as Array<number>
 
-  return { types, status, date };
+  return [types, status, date];
 }
 
 export default useDropdown;

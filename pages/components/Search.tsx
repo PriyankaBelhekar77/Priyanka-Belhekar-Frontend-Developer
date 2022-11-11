@@ -3,11 +3,10 @@ import Dropdown from "./Dropdown";
 import useDropdown from "./hooks/useDropdown";
 
 const Search = ({ capsules, setState }: any) => {
-  const [status, setStatus] = useState('');
-  const [launchDate, setLaunchDate] = useState<string | number>('');
-  const [type, setType] = useState('');
-
-  const { types, status: statuses, date} = useDropdown({ capsules });
+  const [types, statuses, date ] = useDropdown({ capsules });
+  const [status, setStatus] = useState('select from list');
+  const [launchDate, setLaunchDate] = useState<string | number>('select from list');
+  const [type, setType] = useState('select from list');
 
   const onChange = (e: any) => {
     setState(() => {
@@ -19,38 +18,38 @@ const Search = ({ capsules, setState }: any) => {
   useEffect(() => {
     setState(() => {
       const newState = capsules.filter((capsule: any) => {
-        if (status === '') return true;
+        if (status === 'select from list') return true;
         return capsule.status === status;
       });
       return newState;
     });
-  }, [status])
+  }, [status, capsules, setState])
 
   useEffect(() => {
     setState(() => {
       const newState = capsules.filter((capsule: any) => {
-        if (type === '') return true;
+        if (type === 'select from list') return true;
         return capsule.type === type;
       });
       return newState;
     });
-  }, [type])
+  }, [type, capsules, setState])
 
   useEffect(() => {
     setState(() => {
       const newState = capsules.filter((capsule: any) => {
-        if (launchDate === '') return true;
+        if (launchDate === 'select from list') return true;
         const year = new Date(capsule.original_launch).getFullYear().toString();
         return year === launchDate;
       });
       return newState;
     });
-  }, [launchDate])
+  }, [launchDate, capsules, setState])
 
   const onClearFilter = () => {
-    setStatus('');
-    setLaunchDate('');
-    setType('');
+    setStatus('select from list');
+    setLaunchDate('select from list');
+    setType('select from list');
   }
 
   return (
