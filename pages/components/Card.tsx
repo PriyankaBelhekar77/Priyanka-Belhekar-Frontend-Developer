@@ -27,8 +27,13 @@ const Card = (props: Capsule) => {
         <div>Launch Date <span className="font-semibold">{date.toDateString()}</span></div>
         <div>Details <span className="font-semibold">{props.details ?? 'not available'}</span></div>
         <div>Landings <span className="font-semibold">{props.landings}</span></div>
-        <div>Launch Unix <span className="font-semibold">{props.original_launch_unix}</span></div>
+        <div>Launch Unix <span className="font-semibold">{props.original_launch_unix ?? 'not available'}</span></div>
         <div>Reuse Count <span className="font-semibold">{props.reuse_count}</span></div>
+        <div>Mission Details {props.missions.length ? props.missions.map((mission, index) => <div className="pl-4">
+          <div>- Name <span className="font-semibold">{mission.name}</span></div>
+          <div className="pl-3">Flight <span className="font-semibold">{mission.flight}</span></div>
+        </div>) : <span className="font-semibold">not available</span>}
+        </div>
       </div>}
       />}
     </>
