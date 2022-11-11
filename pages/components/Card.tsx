@@ -35,10 +35,10 @@ const Card = (props: Capsule) => {
   )
 }
 
-const Cards = ({ currentData }: { currentData:Capsules}) => {
+const Cards = ({ currentData }: { currentData: Capsules }) => {
   return (
     <div className="relative flex flex-wrap gap-10 justify-center md:min-h-[500px] px-4 md:px-0">
-        {currentData.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
+        {currentData && currentData.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
     </div>
   )
 }

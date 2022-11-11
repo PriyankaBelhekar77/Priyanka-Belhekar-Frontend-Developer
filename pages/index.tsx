@@ -7,7 +7,7 @@ import Search from "./components/Search";
 export interface Capsule {
   capsule_serial: string;
   capsule_id: string;
-  status: string;
+  status: 'retired' | 'destroyed' | 'active' | 'unknown';
   original_launch: string;
   original_launch_unix: number;
   missions: Array<Missions>;
