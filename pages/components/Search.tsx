@@ -1,23 +1,29 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Capsules } from "..";
 import Dropdown from "./Dropdown";
 import useDropdown from "./hooks/useDropdown";
 
-const Search = ({ capsules, setState }: any) => {
+interface SearchProps {
+  capsules: Capsules;
+  setState: Function;
+}
+
+const Search = ({ capsules, setState }: SearchProps) => {
   const [types, statuses, date ] = useDropdown({ capsules });
   const [status, setStatus] = useState('select from list');
   const [launchDate, setLaunchDate] = useState<string | number>('select from list');
   const [type, setType] = useState('select from list');
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState(() => {
-      const newState = capsules.filter((capsule: any) => capsule.capsule_serial.includes(e.target.value));
+      const newState = capsules.filter((capsule) => capsule.capsule_serial.includes(e.target.value));
       return newState;
     })
   }
 
   useEffect(() => {
     setState(() => {
-      const newState = capsules.filter((capsule: any) => {
+      const newState = capsules.filter((capsule) => {
         if (status === 'select from list') return true;
         return capsule.status === status;
       });
@@ -27,7 +33,7 @@ const Search = ({ capsules, setState }: any) => {
 
   useEffect(() => {
     setState(() => {
-      const newState = capsules.filter((capsule: any) => {
+      const newState = capsules.filter((capsule) => {
         if (type === 'select from list') return true;
         return capsule.type === type;
       });
@@ -37,7 +43,7 @@ const Search = ({ capsules, setState }: any) => {
 
   useEffect(() => {
     setState(() => {
-      const newState = capsules.filter((capsule: any) => {
+      const newState = capsules.filter((capsule) => {
         if (launchDate === 'select from list') return true;
         const year = new Date(capsule.original_launch).getFullYear().toString();
         return year === launchDate;

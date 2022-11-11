@@ -28,28 +28,28 @@ const Paginate = ({ totalCount, itemsOnEachPage, currentPage, onPageChange }: Pa
   });
   const lastPage = paginateRange[paginateRange.length - 1];
   const onNext = () => {
-    if (currentPage !== lastPage) {
-      onPageChange(currentPage + 1)
-    }
+    onPageChange(currentPage + 1)
   }
   const onPrevious = () => {
-    if (currentPage !== 1) {
-      onPageChange(currentPage - 1)
-    }
+    onPageChange(currentPage - 1)
   }
   return (
     <nav aria-label="Page navigation example">
       <ul className="inline-flex -space-x-px">
-        <li 
-          onClick={onPrevious}
-        >
-          <button className="py-2 px-3 ml-0 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" disabled={currentPage === 1}>Previous</button>
+        <li>
+          <button 
+            className="py-2 px-3 ml-0 disabled:text-opacity-50 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" 
+            disabled={currentPage === 1}
+            onClick={onPrevious}
+            >Previous</button>
         </li>
         {paginateRange.map(page => <Page key={page} pageNumber={page} active={page === currentPage} onClick={onPageChange} />)}
-        <li 
-          onClick={onNext}
-        >
-          <button className="py-2 px-3 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" disabled={currentPage === lastPage}>Next</button>
+        <li>
+          <button 
+            className="py-2 px-3 disabled:text-opacity-50 enabled:cursor-pointer leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 enabled:hover:bg-gray-100 enabled:hover:text-gray-700" 
+            disabled={currentPage === lastPage}
+            onClick={onNext}
+            >Next</button>
         </li>
       </ul>
     </nav>
