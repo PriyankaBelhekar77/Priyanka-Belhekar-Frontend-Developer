@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import Banner from "./components/Banner";
-import Card from "./components/Card";
+import Cards from "./components/Card";
 import Paginate from "./components/Paginate";
 import Search from "./components/Search";
 
 export interface Capsule {
   capsule_serial: string;
   capsule_id: string;
-  status: string;
+  status: 'retired' | 'destroyed' | 'active' | 'unknown';
   original_launch: string;
   original_launch_unix: number;
   missions: Array<Missions>;
@@ -50,12 +50,10 @@ export default function Home({ capsules }: HomeProps) {
   }, [currentPage, capsulesState])
 
   return (
-    <div className="container mx-auto flex justify-center items-center flex-col">
+    <div className="container mx-auto flex justify-center items-center flex-col gap-4">
       <Banner />
       <Search capsules={capsules} setState={setCapsulesState} />
-      <div className="flex flex-wrap gap-10">
-        {currentData.map(capsule => <Card key={capsule.capsule_serial} {...capsule} />)}
-      </div>
+      <Cards currentData={currentData} />
       <Paginate
         itemsOnEachPage={itemsOnEachPage}
         totalCount={capsules.length}
