@@ -5,3 +5,23 @@
 body, html, #__next {
   height: 100%;
 }
+
+.banner {
+  background: url('../public/dragon_feature.webp');
+  background-size: cover;
+  animation-name: movingImage;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes movingImage {
+  from {
+    background-repeat: initial;
+  }
+
+  to {
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
